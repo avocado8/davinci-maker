@@ -1,0 +1,10 @@
+fastapi
+uvicorn[standard]
+rembg
+opencv-python-headless
+numpy
+Pillow
+python-multipart
+openai
+svgpathtools
+python-dotenv
