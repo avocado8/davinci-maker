@@ -7,7 +7,7 @@ interface Props {
   steps: SvgPipelineSteps | null;
   drawing: Drawing;
   metrics: Metrics | null;
-  canvasRef: RefObject<StrokePreviewCanvasHandle>;
+  canvasRef: RefObject<StrokePreviewCanvasHandle | null>;
   onExport?: () => void;
 }
 
