@@ -12,7 +12,11 @@ from .routes import ai_svg_pipeline, auth, image_pipeline
 
 app = FastAPI(title="Davinci Maker API")
 
-origins = os.getenv("ALLOWED_ORIGINS", "http://localhost:5173").split(",")
+origins = [
+    origin.strip().rstrip("/")
+    for origin in os.getenv("ALLOWED_ORIGINS", "http://localhost:5173").split(",")
+    if origin.strip()
+]
 
 app.add_middleware(
     CORSMiddleware,

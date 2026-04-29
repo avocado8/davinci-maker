@@ -1,6 +1,9 @@
 import type { PipelineParams, PipelineResponse, SvgPipelineParams, SvgPipelineResponse } from "./types";
 
-const BASE = (import.meta.env.VITE_API_URL as string) ?? "http://localhost:8000";
+const BASE = (
+  (import.meta.env.VITE_API_URL as string | undefined) ??
+  (import.meta.env.DEV ? "http://localhost:8000" : "")
+).replace(/\/$/, "");
 
 function getToken(): string | null {
   return sessionStorage.getItem("auth_token");
