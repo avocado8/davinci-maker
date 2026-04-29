@@ -1,8 +1,18 @@
 import type { PipelineParams, PipelineResponse, SvgPipelineParams, SvgPipelineResponse } from "./types";
 
+declare global {
+  interface Window {
+    __APP_CONFIG__?: {
+      API_URL?: string;
+    };
+  }
+}
+
 const BASE = (
-  (import.meta.env.VITE_API_URL as string | undefined) ??
+  window.__APP_CONFIG__?.API_URL ||
+  ((import.meta.env.VITE_API_URL as string | undefined) ??
   (import.meta.env.DEV ? "http://localhost:8000" : "")
+  )
 ).replace(/\/$/, "");
 
 function getToken(): string | null {
