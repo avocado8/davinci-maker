@@ -46,6 +46,7 @@ async def process_image(
 ):
     content = await image.read()
     pil_image = Image.open(io.BytesIO(content)).convert("RGB")
+    pil_image.thumbnail((1024, 1024), Image.LANCZOS)
     original_rgb = np.array(pil_image)
 
     original_b64 = _to_b64(original_rgb)
